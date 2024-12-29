@@ -1,0 +1,35 @@
+{
+    idGrade:'', --tabela grade
+    Status:'', --tabela grade
+    DataCriacao: '', --tabela grade
+    DataPrevistaEncerramento:'', --tabela grade
+    DataEncerramento:'', --tabela grade
+    UsuarioCriador: [{
+        idUsuario:'',--tabela grade
+        LoginUsuario:'',--tabela usuario
+        Status:'', --tabela usuario
+    }],
+    UsuarioEncerramento: [{
+        idUsuario:'',--tabela grade
+        LoginUsuario:'', --tabela usuario
+        Status:'', --tabela usuariio
+    }],
+    Itens: [
+        {
+            idGradeItem:'' --tabela gradeItem
+            idProduto:'', --tabela gradeItem
+            descricaoNomeProduto:'', --tabela Produto
+            Quantidade:'',--tabela gradeItem
+            VlProduto:'', --tabela gradeItem
+            status:'' --tabela Produto
+        },{
+            idGradeItem:'' --tabela gradeItem
+            idProduto:'', --tabela gradeItem
+            descricaoNomeProduto:'', --tabela Produto
+            Quantidade:'',--tabela gradeItem
+            VlProduto:'', --tabela gradeItem
+            status:'' --tabela Produto
+        }
+    ]
+    
+}

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alternativa</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/2.3.1/purify.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="app.js" defer></script>
+</head>
+
+<body>
+    <div id="app" class="container">
+        <header>
+            <h1>Formalização de Grade</h1>
+        </header>
+        <div class="conteudo">
+            <button type="button" v-if="clientes.length <= 0" v-if="produtosDisponiveis.length <= 0"
+                @click="carregarDados()">Carregar Informações</button>
+            <form @submit.prevent="cadastrarGrade">
+
+                <label for="nomeCliente">Nome do Cliente:</label>
+                <input type="text" id="nomeCliente" v-model="nomeCliente" @input="filtrarClientes" required>
+                <div class="dropdown" v-if="clientesFiltrados.length">
+                    <ul>
+                        <li v-for="cliente in clientesFiltrados" :key="cliente.Id" @click="selecionarCliente(cliente)">
+                            {{ cliente.nomeCliente }} - {{ cliente.endereco }} - {{cliente.telefoneCliente}}
+                        </li>
+                    </ul>
+                </div>
+
+
+                <label for="telefone">Telefone:</label>
+                <input type="text" id="telefone" v-model="telefone" required>
+
+
+                <label for="endereco">Endereço:</label>
+                <div class="endereco-container">
+                    <input type="text" id="endereco" v-model="endereco" placeholder="Endereço" required
+                        class="endereco-input">
+                </div>
+
+                
+
+                <h2>Produtos Fornecidos</h2>
+                <div class="produtos-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Produto</th>
+                                <th>Quantidade</th>
+                                <th>Valor</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="(produto, index) in produtos" :key="index">
+                                <td>{{ produto.nome }}</td>
+                                <td>{{ produto.quantidade }}</td>
+                                <td>R$ {{ produto.valor }}</td>
+                                <td>
+                                    <button type="button" @click="editarProduto(index)">Editar</button>
+                                    <button type="button" @click="excluirProduto(index)">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+
+                    </table>
+                </div>
+                <div class="produto-input">
+                    <input type="text" v-model="novoProduto.nome" @input="filtrarProdutos" placeholder="Produto">
+                    <ul class="dropdown" v-if="produtosFiltrados.length">
+                        <li v-for="produto in produtosFiltrados" :key="produto.Id" @click="selecionarProduto(produto)">
+                            {{ produto.NomeProduto}} - {{produto.VlProduto}}
+                        </li>
+                    </ul>
+
+                    <input type="number" v-if="novoProduto.valor === 0" placeholder="Valor" min="0" step="0.01"
+                        @input="novoProduto.valor = $event.target.value">
+                    <input type="number" v-else v-model="novoProduto.valor" placeholder="Valor" min="0" step="0.01">
+
+                    <input type="number" v-if="novoProduto.quantidade === 0" placeholder="Quantidade" min="1"
+                        @input="novoProduto.quantidade = $event.target.value">
+                    <input type="number" v-else v-model="novoProduto.quantidade" placeholder="Quantidade" min="1">
+
+                    <button type="button" @click="adicionarOuAtualizarProduto" class="botao-adicionar">
+                        {{ editarIndex === null ? 'Adicionar Produto' : 'Atualizar Produto' }}
+                    </button>
+
+                </div>
+
+                <div class="total">
+                    <p>Total de Itens: {{ totalProdutos }}</p>
+                    <p>Valor Total: R$ {{ valorTotal.toFixed(2) }}</p>
+                </div>
+
+                <div class="botao-container">
+                    <button type="submit" class="botao-gerar">Gerar PDF e Cadastrar Grade</button>
+                </div>
+
+            </form>
+
+            <div v-if="assinarErro" class="erro">
+                <p>Erro ao gerar o PDF.</p>
+            </div>
+
+            <button type="button" @click="irParaOutraPagina" class="botao-ir">Fechamento de grade</button>
+        </div>
+    </div>
+</body>
+
+</html>

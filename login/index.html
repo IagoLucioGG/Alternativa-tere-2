@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alternativa</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="app">
+    <h1>Alternativa</h1>
+    <div class="input-group">
+      <label for="usuario">Usuário:</label>
+      <input type="text" v-model="loginUsuario" id="usuario" placeholder="Digite seu usuário" />
+    </div>
+    <div class="input-group">
+      <label for="senha">Senha:</label>
+      <input type="password" v-model="senha" id="senha" placeholder="Digite sua senha" />
+    </div>
+    <button @click="handleLogin">Entrar</button>
+
+    <div v-if="modal.visible" :class="['modal', modal.type]">
+      <p>{{ modal.message }}</p>
+    </div>
+  </div>
+
+  <!-- Importa o Vue.js -->
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+  <!-- Importa o arquivo app.js como módulo -->
+  <script type="module" src="app.js"></script>
+</body>
+</html>

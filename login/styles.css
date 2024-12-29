@@ -1,0 +1,116 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  #app {
+    width: 100%;
+    max-width: 400px;
+    padding: 20px;
+    background: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
+  }
+  
+  h1 {
+    text-align: center;
+    color: #003366; /* Azul escuro */
+  }
+  
+  .input-group {
+    margin-bottom: 15px;
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 5px;
+    color: #004080; /* Azul médio */
+  }
+  
+  input {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #0073e6; /* Azul claro */
+    border-radius: 5px;
+    box-sizing: border-box;
+  }
+  
+  input:focus {
+    outline: none;
+    border-color: #005bb5; /* Azul mais escuro ao focar */
+    box-shadow: 0 0 4px rgba(0, 91, 181, 0.5);
+  }
+  
+  button {
+    width: 100%;
+    padding: 10px;
+    font-size: 18px;
+    color: #fff;
+    background-color: #005bb5; /* Azul mais escuro */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #004080; /* Azul médio */
+  }
+  
+  /* Modal ajustado para canto inferior direito */
+  .modal {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    min-width: 250px;
+    max-width: 300px;
+    padding: 10px;
+    
+    font-size: 16px;
+    text-align: center;
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    animation: fade-in 0.3s ease-in-out;
+  }
+  
+  .modal p {
+    margin: 0;
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-size: 14px;
+  }
+  
+  /* Sucesso: Azul claro */
+  .modal.success p {
+    background-color: #ccffd7; /* Azul claro */
+    color: #008026; /* Azul médio */
+  }
+  
+  /* Erro: Vermelho clarinho */
+  .modal.error p {
+    background-color: #f8d7da; /* Vermelho claro */
+    color: #721c24; /* Vermelho escuro */
+  }
+  
+  /* Animação suave ao aparecer */
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
